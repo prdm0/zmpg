@@ -70,6 +70,12 @@ argument that defaults to <code>t0 = 0</code>. The <code>t0</code> argument is t
 time for the calculation of the survival function. The <code>t0</code> argument is
 useful for calculating the survival function from a start time different
 from zero. In most cases, you should not change the default value of <code>t0</code>.</p>
+<p>The function returned by <code>survival_function()</code> also has the argument
+<code>asymptotic_quantile = 30</code>, which defaults to <code>30</code>. This argument is responsible
+for evaluating the survival function at the 30th quantile, providing a good approximation
+for the cure fraction. As this is a numerical evaluation, and depending on the
+complexity of the base probability density function, it may be that <code>asymptotic_quantile = 30</code>
+produces an error, requiring the value of <code>asymptotic_quantile</code> to be changed.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -79,12 +85,14 @@ from zero. In most cases, you should not change the default value of <code>t0</c
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">survival_weibull</span> <span class="op">&lt;-</span> <span class="fu">survival_function</span><span class="op">(</span><span class="va">dweibull</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">survival_weibull</span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">2</span>, scale <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">survival_weibull</span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">2</span>, scale <span class="op">=</span> <span class="fl">1</span>, asymptotic_quantile <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1.000000e+00 3.678794e-01 1.831564e-02 1.234098e-04 1.125352e-07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [6] 1.392675e-11 0.000000e+00 1.110223e-16 0.000000e+00 5.218048e-15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [11] 3.885781e-14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"time")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  0  1  2  3  4  5  6  7  8  9 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"cure_fraction")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "survival_function"</span>
 <span class="r-in"><span></span></span>

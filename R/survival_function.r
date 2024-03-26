@@ -19,9 +19,18 @@
 #' useful for calculating the survival function from a start time different
 #' from zero. In most cases, you should not change the default value of `t0`.
 #'
+#' The function returned by [survival_function()] also has the argument
+#' `asymptotic_quantile = 30`, which defaults to `30`. This argument is responsible
+#' for evaluating the survival function at the 30th quantile, providing a good approximation
+#' for the cure fraction. As this is a numerical evaluation, and depending on the
+#' complexity of the base probability density function, it may be that `asymptotic_quantile = 30`
+#' produces an error, requiring the value of `asymptotic_quantile` to be changed.
+#'
+#'
+#'
 #' @examples
 #' survival_weibull <- survival_function(dweibull)
-#' survival_weibull(0:10, shape = 2, scale = 1)
+#' survival_weibull(0:10, shape = 2, scale = 1, asymptotic_quantile = 30)
 #'
 #' @seealso [hazard_function()].
 #' @export
@@ -47,12 +56,13 @@ survival_function <- function(pdf) {
     } else {
       return(r)
     }
-
   }
   f_vec <- Vectorize(FUN = f, vectorize.args = "t")
-  f_class <- function(time, ...) {
+  f_class <- function(time, asymptotic_quantile = 30, ...) {
     result <- f_vec(time, ...)
+    cure_fraction <- f_vec(asymptotic_quantile, ...)
     attr(result, "time") <- time
+    attr(result, "cure_fraction") <- cure_fraction
     class(result) <- "survival_function"
     result
   }

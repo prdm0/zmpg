@@ -70,7 +70,6 @@ function you wish, not limiting yourself to the base densities that are
 implemented in [R](https://www.r-project.org/).
 
 ``` r
-
 # remotes::install_github("prdm0/zmpg")
 library(zmpg) 
 # install.packages("cowplot")
@@ -81,44 +80,44 @@ zmpg_weibull <- zmpg::pdf_fragility_zmpg(dweibull)
 # Improper density function of the ZMPG-Weibull fragility model
 density <-
   zmpg_weibull(
-    t = seq(0.001, 10, length.out = 250L),
-    mu = 1.7,
-    phi = 1.6,
-    rho = 1.1,
-    shape = 1.5,
+    t = seq(0.001, 3, length.out = 50L),
+    mu = 10.7,
+    phi = 2.6,
+    rho = 3.1,
+    shape = 2.5,
     scale = 1.2
   )
 
 # Cumulative distribution function of the ZMPG-Weibull fragility model
 cdf <-
   zmpg::cdf_function(zmpg_weibull)(
-    t = seq(0.001, 10, length.out = 50L),
-    mu = 1.7,
-    phi = 1.6,
-    rho = 1.1,
-    shape = 1.5,
+    t = seq(0.001, 3, length.out = 50L),
+    mu = 10.7,
+    phi = 2.6,
+    rho = 3.1,
+    shape = 2.5,
     scale = 1.2
   )
 
 # Survival function of the ZMPG-Weibull fragility model
 survival <-
   zmpg::survival_function(zmpg_weibull)(
-    t = seq(0.001, 10, length.out = 50L),
-    mu = 1.7,
-    phi = 1.6,
-    rho = 1.1,
-    shape = 1.5,
+    t = seq(0.001, 3, length.out = 50L),
+    mu = 10.7,
+    phi = 2.6,
+    rho = 3.1,
+    shape = 2.5,
     scale = 1.2
   )
 
 # Hazard function of the ZMPG-Weibull fragility model
 hazard <-
   zmpg::hazard_function(zmpg_weibull)(
-    t = seq(0.001, 1, length.out = 250L),
-    mu = 1.7,
-    phi = 1.6,
-    rho = 1.1,
-    shape = 1.5,
+    t = seq(0.001, 3, length.out = 50L),
+    mu = 10.7,
+    phi = 2.6,
+    rho = 3.1,
+    shape = 2.5,
     scale = 1.2
   )
 

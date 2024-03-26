@@ -28,10 +28,17 @@ argument that defaults to \code{t0 = 0}. The \code{t0} argument is the initial
 time for the calculation of the survival function. The \code{t0} argument is
 useful for calculating the survival function from a start time different
 from zero. In most cases, you should not change the default value of \code{t0}.
+
+The function returned by \code{\link[=survival_function]{survival_function()}} also has the argument
+\code{asymptotic_quantile = 30}, which defaults to \code{30}. This argument is responsible
+for evaluating the survival function at the 30th quantile, providing a good approximation
+for the cure fraction. As this is a numerical evaluation, and depending on the
+complexity of the base probability density function, it may be that \code{asymptotic_quantile = 30}
+produces an error, requiring the value of \code{asymptotic_quantile} to be changed.
 }
 \examples{
 survival_weibull <- survival_function(dweibull)
-survival_weibull(0:10, shape = 2, scale = 1)
+survival_weibull(0:10, shape = 2, scale = 1, asymptotic_quantile = 30)
 
 }
 \seealso{
