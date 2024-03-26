@@ -17,7 +17,7 @@
 #'   shape = 0.5,
 #'   scale = 1.2
 #' ) |> plot()
-#' @importFrom ggplot2 ggplot aes geom_line labs theme element_text aes_string
+#' @importFrom ggplot2 ggplot aes geom_line labs theme element_text aes_string xlim ylim
 #'
 #' @export
 plot.pdf_fragility_zmpg <- function(x, ...) {
@@ -30,6 +30,8 @@ plot.pdf_fragility_zmpg <- function(x, ...) {
       x = "t",
       y = "f(t)"
     ) +
+    xlim(min(data$x), max(data$x)) +
+    ylim(min(data$y), max(data$y)) +
     theme(
       plot.title = element_text(face = "bold"),
       plot.subtitle = element_text(face = "bold"),

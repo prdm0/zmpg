@@ -20,17 +20,24 @@
 #'
 #' @seealso [survival_function()].
 #'
+#'
+#' @references NADARAJAH, Saralees; KOTZ, Samuel. The beta exponential distribution. Reliability engineering & system safety, v. 91, n. 6, p. 689-697, 2006.
+#'
 #' @examples
-#' # Define a probability density function
-#' exponential_pdf <- function(t, lambda) {
-#'   lambda * exp(-lambda * t)
+#' # Saraless Nadarajah and Samnuel Kotz (2006)
+#' beta_exponential <- function(x, a, b, lambda){
+#'  lambda / beta(a, b) * exp(-b * lambda * x) * (1 - exp(-lambda * x))^(a - 1)
 #' }
 #'
-#' # Create a hazard function based on the exponential_pdf
-#' exponential_hazard <- hazard_function(exponential_pdf)
+#' hazard_beta_exponential <- hazard_function(beta_exponential)
 #'
-#' # Calculate the hazard at time 1
-#' exponential_hazard(1, lambda = 0.5)
+#' hazard_beta_exponential(
+#'   t = seq(0.001, 1.5, length.out = 50L),
+#'   a = 1.5,
+#'   b = 1.8,
+#'   lambda = 1.5
+#' )
+
 #'
 #' @importFrom assertthat assert_that
 #'

@@ -19,7 +19,21 @@ Constructs the plot of the hazard function of an object of the
 \code{hazard_function} class.
 }
 \examples{
-hazard_weibull <- hazard_function(dweibull)
-plot.hazard_function(hazard_weibull(1:10, shape = 2, scale = 1))
+# Saraless Nadarajah and Samnuel Kotz (2006)
+beta_exponential <- function(x, a, b, lambda){
+ lambda / beta(a, b) * exp(-b * lambda * x) * (1 - exp(-lambda * x))^(a - 1)
+}
 
+hazard_beta_exponential <- hazard_function(beta_exponential)
+
+hazard_beta_exponential(
+  t = seq(0.001, 1.5, length.out = 250L),
+  a = 1.5,
+  b = 1.8,
+  lambda = 1.5
+) |> plot()
+
+}
+\references{
+NADARAJAH, Saralees; KOTZ, Samuel. The beta exponential distribution. Reliability engineering & system safety, v. 91, n. 6, p. 689-697, 2006.
 }

@@ -9,9 +9,9 @@
 #'
 #' @examples
 #' cdf_weibull <- cdf_function(dweibull)
-#' # plot.cdf_function(cdf_weibull(0:10, shape = 2, scale = 1))
+#' plot(cdf_weibull(0:10, shape = 2, scale = 1))
 #'
-#' @importFrom ggplot2 aes geom_line labs theme element_text aes_string
+#' @importFrom ggplot2 aes geom_line labs theme element_text aes_string xlim ylim
 #'
 #' @export
 plot.cdf_function <- function(x, ...) {
@@ -23,6 +23,8 @@ plot.cdf_function <- function(x, ...) {
       x = "t",
       y = "F(t)"
     ) +
+    xlim(min(data$x), max(data$x)) +
+    ylim(min(data$y), max(data$y)) +
     theme(
       plot.title = element_text(face = "bold"),
       axis.title.x = element_text(face = "bold"),

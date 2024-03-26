@@ -10,15 +10,17 @@
 #'
 #' @examples
 #' survival_weibull <- survival_function(dweibull)
-#' plot.survival_function(survival_weibull(0:10, shape = 2, scale = 1))
+#' plot(survival_weibull(0:10, shape = 2, scale = 1))
 #'
-#' @importFrom ggplot2 aes geom_line labs theme element_text aes_string
+#' @importFrom ggplot2 aes geom_line labs theme element_text aes_string xlim ylim
 #'
 #' @export
 plot.survival_function <- function(x, ...) {
   data <- data.frame(x = attr(x, "time"), y = x)
   ggplot(data, aes_string(x = "x", y = "y")) +
     geom_line() +
+    xlim(min(data$x), max(data$x)) +
+    ylim(min(data$y), max(data$y)) +
     labs(title = "Survival function", x = "t", y = "S(t)") +
     theme(
       plot.title = element_text(face = "bold"),

@@ -129,15 +129,7 @@ p_2 <- plot(cdf)
 p_3 <- plot(survival)
 p_4 <- plot(hazard)
 
-plot_grid(p_1, p_2, p_3, p_4, labels = c('A', 'B', 'C'))
-#> Don't know how to automatically pick scale for object of type
-#> <pdf_fragility_zmpg>. Defaulting to continuous.
-#> Don't know how to automatically pick scale for object of type <cdf_function>.
-#> Defaulting to continuous.
-#> Don't know how to automatically pick scale for object of type
-#> <survival_function>. Defaulting to continuous.
-#> Don't know how to automatically pick scale for object of type
-#> <hazard_function>. Defaulting to continuous.
+plot_grid(p_1, p_2, p_3, p_4, labels = c('A', 'B', 'C', 'D'))
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />

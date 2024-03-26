@@ -19,6 +19,6 @@ This function plots the cumulative distribution function (CDF) of a given datase
 }
 \examples{
 cdf_weibull <- cdf_function(dweibull)
-# plot.cdf_function(cdf_weibull(0:10, shape = 2, scale = 1))
+plot(cdf_weibull(0:10, shape = 2, scale = 1))
 
 }

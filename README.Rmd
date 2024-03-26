@@ -104,6 +104,6 @@ p_2 <- plot(cdf)
 p_3 <- plot(survival)
 p_4 <- plot(hazard)
 
-plot_grid(p_1, p_2, p_3, p_4, labels = c('A', 'B', 'C'))
+plot_grid(p_1, p_2, p_3, p_4, labels = c('A', 'B', 'C', 'D'))
 ```
 

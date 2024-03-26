@@ -20,6 +20,6 @@ Constructs the plot of the survival function of an object of the
 }
 \examples{
 survival_weibull <- survival_function(dweibull)
-plot.survival_function(survival_weibull(0:10, shape = 2, scale = 1))
+plot(survival_weibull(0:10, shape = 2, scale = 1))
 
 }

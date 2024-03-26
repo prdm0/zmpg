@@ -77,25 +77,47 @@ where \(f_T(t)\) is the probability density function and \(S_T(t)\) is the
 survival function at time \(t\).</p>
     </div>
     <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>NADARAJAH, Saralees; KOTZ, Samuel. The beta exponential distribution. Reliability engineering &amp; system safety, v. 91, n. 6, p. 689-697, 2006.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="survival_function.html">survival_function()</a></code>.</p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Define a probability density function</span></span></span>
-<span class="r-in"><span><span class="va">exponential_pdf</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span>, <span class="va">lambda</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="va">lambda</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">lambda</span> <span class="op">*</span> <span class="va">t</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Saraless Nadarajah and Samnuel Kotz (2006)</span></span></span>
+<span class="r-in"><span><span class="va">beta_exponential</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span>, <span class="va">b</span>, <span class="va">lambda</span><span class="op">)</span><span class="op">{</span></span></span>
+<span class="r-in"><span> <span class="va">lambda</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Special.html" class="external-link">beta</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">b</span> <span class="op">*</span> <span class="va">lambda</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="va">lambda</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="va">a</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Create a hazard function based on the exponential_pdf</span></span></span>
-<span class="r-in"><span><span class="va">exponential_hazard</span> <span class="op">&lt;-</span> <span class="fu">hazard_function</span><span class="op">(</span><span class="va">exponential_pdf</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">hazard_beta_exponential</span> <span class="op">&lt;-</span> <span class="fu">hazard_function</span><span class="op">(</span><span class="va">beta_exponential</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Calculate the hazard at time 1</span></span></span>
-<span class="r-in"><span><span class="fu">exponential_hazard</span><span class="op">(</span><span class="fl">1</span>, lambda <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5</span>
+<span class="r-in"><span><span class="fu">hazard_beta_exponential</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  t <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">1.5</span>, length.out <span class="op">=</span> <span class="fl">50L</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  a <span class="op">=</span> <span class="fl">1.5</span>,</span></span>
+<span class="r-in"><span>  b <span class="op">=</span> <span class="fl">1.8</span>,</span></span>
+<span class="r-in"><span>  lambda <span class="op">=</span> <span class="fl">1.5</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.1883102 0.9840887 1.3021254 1.5119839 1.6667616 1.7876074 1.8854069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 1.9665682 2.0351987 2.0940896 2.1452239 2.1900584 2.2296930 2.2649769</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 2.2965791 2.3250336 2.3507737 2.3741547 2.3954716 2.4149712 2.4328620</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] 2.4493213 2.4645012 2.4785329 2.4915300 2.5035918 2.5148037 2.5252451</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] 2.5349825 2.5440758 2.5525787 2.5605390 2.5679998 2.5749997 2.5815736</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] 2.5877530 2.5935667 2.5990406 2.6041986 2.6090622 2.6136515 2.6179844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] 2.6220779 2.6259472 2.6296067 2.6330693 2.6363472 2.6394517 2.6423931</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [50] 2.6451811</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"time")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.00100000 0.03159184 0.06218367 0.09277551 0.12336735 0.15395918</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] 0.18455102 0.21514286 0.24573469 0.27632653 0.30691837 0.33751020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] 0.36810204 0.39869388 0.42928571 0.45987755 0.49046939 0.52106122</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] 0.55165306 0.58224490 0.61283673 0.64342857 0.67402041 0.70461224</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] 0.73520408 0.76579592 0.79638776 0.82697959 0.85757143 0.88816327</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] 0.91875510 0.94934694 0.97993878 1.01053061 1.04112245 1.07171429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] 1.10230612 1.13289796 1.16348980 1.19408163 1.22467347 1.25526531</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] 1.28585714 1.31644898 1.34704082 1.37763265 1.40822449 1.43881633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [49] 1.46940816 1.50000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "hazard_function"</span>
 <span class="r-in"><span></span></span>
