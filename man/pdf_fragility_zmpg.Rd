@@ -30,7 +30,7 @@ The probability density function of a random variable \eqn{T}
 requires the base survival function and hazard function, i.e.,
 \eqn{S_0(t)} and \eqn{h_0(t)}, respectively. However, it will only be
 necessary to inform the base density function as an argument for pdf.
-Internally, the function #' \code{\link[=pdf_fragility_zmpg]{pdf_fragility_zmpg()}} will calculate
+Internally, the function \code{\link[=pdf_fragility_zmpg]{pdf_fragility_zmpg()}} will calculate
 \eqn{S_0(t)} and \eqn{h_0(t)}. The probability density function of \eqn{T}
 is said to be the discrete frailty model. \eqn{T} is a continuous random
 variable, where the density (frailty model) was obtained through a discrete

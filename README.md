@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# zmpg package <img src="logo.png" align="right" />
+# zmpg: Generalized Zero-Modified Poisson Fragility Model <img src="logo.png" align="right" />
 
 <!-- badges: start -->
 <!-- badges: end -->

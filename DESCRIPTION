@@ -1,5 +1,5 @@
 Package: zmpg
-Title: What the Package Does (One Line, Title Case)
+Title: Generalized Zero-Modified Poisson Fragility Model
 Version: 0.0.0.9000
 Authors@R: c(
     person("Pedro Rafael", "D. Marinho", , "pedro.rafael.marinho@gmail.com", role = c("aut", "cre"),
