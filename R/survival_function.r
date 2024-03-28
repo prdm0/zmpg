@@ -26,15 +26,41 @@
 #' complexity of the base probability density function, it may be that `asymptotic_quantile = 30`
 #' produces an error, requiring the value of `asymptotic_quantile` to be changed.
 #'
-#'
+#' @references NADARAJAH, Saralees; KOTZ, Samuel. The beta exponential distribution. Reliability engineering & system safety, v. 91, n. 6, p. 689-697, 2006.
 #'
 #' @examples
 #' survival_weibull <- survival_function(dweibull)
 #' survival_weibull(0:10, shape = 2, scale = 1, asymptotic_quantile = 30)
 #'
+#' # The user can also define any density
+#' # Saraless Nadarajah and Samnuel Kotz (2006)
+#' beta_exponential <- function(x, a, b, lambda){
+#'  lambda / beta(a, b) * exp(-b * lambda * x) * (1 - exp(-lambda * x))^(a - 1)
+#' }
+#' survival_beta_exponential <- survival_function(beta_exponential)
+#' survival_beta_exponential(
+#'   t = seq(0.01, 1.5, length.out = 20L),
+#'   a = 1.5,
+#'   b = 1.8,
+#'   lambda = 1.5
+#' )
+#'
+#' # Sobrevivencia do modelo de fragilidade descreta ZMPG
+#' fragility_model <- pdf_fragility_zmpg(pdf = dweibull)
+#' fragility_survival <- survival_function(fragility_model)
+#' fragility_survival(
+#'   t = seq(0.001, 4, length.out = 50L),
+#'   shape = 1.3,
+#'   scale = 1.2,
+#'   mu = 3.7,
+#'   rho = 1.5,
+#'   phi = 2.5,
+#'   asymptotic_quantile = 30
+#'  ) |> plot()
+#'
 #' @seealso [hazard_function()].
-#' @export
 #' @importFrom stats integrate
+#' @export
 survival_function <- function(pdf) {
   f <- function(t, t0 = 0, ...) {
     assertthat::assert_that(
@@ -58,11 +84,12 @@ survival_function <- function(pdf) {
     }
   }
   f_vec <- Vectorize(FUN = f, vectorize.args = "t")
-  f_class <- function(time, asymptotic_quantile = 30, ...) {
-    result <- f_vec(time, ...)
-    cure_fraction <- f_vec(asymptotic_quantile, ...)
-    attr(result, "time") <- time
-    attr(result, "cure_fraction") <- cure_fraction
+
+  # # Wrapper function to add class and attributes to the result
+  f_class <- function(t, t0 = 0, ..., asymptotic_quantile = 30) {
+    result <- f_vec(t = t, t0 = 0, ...)
+    attr(result, "time") <- t
+    attr(result, "cure_fraction") <- f_vec(t = asymptotic_quantile, t0 = t0, ...)
     class(result) <- "survival_function"
     result
   }

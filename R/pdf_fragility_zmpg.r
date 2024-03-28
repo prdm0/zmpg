@@ -4,11 +4,6 @@
 #' frailty model of a continuous random variable \eqn{T} through a base density.
 #'
 #' @param pdf The base probability density function.
-#' @param mu The mean parameter of the ZMPG distribution.
-#' @param phi The dispersion of the ZMPG distribution.
-#' @param rho The correlation parameter of the ZMPG distribution.
-#' @param ... Additional arguments of the base distribution passed to `pdf`.
-#'
 #' @return Calculates the improper density of a random variable \eqn{T} that
 #' follows the forward discrete frailty model \eqn{f}.
 #' @details The probability density function of a random variable \eqn{T}
@@ -56,9 +51,9 @@ pdf_fragility_zmpg <- function(pdf) {
     }
   }
   f_vec <- Vectorize(FUN = f, vectorize.args = "t")
-  f_class <- function(time, ...) {
-    result <- f_vec(time, ...)
-    attr(result, "time") <- time
+  f_class <- function(t, ...) {
+    result <- f_vec(t, ...)
+    attr(result, "time") <- t
     class(result) <- "pdf_fragility_zmpg"
     result
   }

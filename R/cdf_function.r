@@ -53,11 +53,12 @@ cdf_function <- function(pdf) {
     1 - survival_function(pdf)(t, t0 = 0, ...)
   }
   f_vec <- Vectorize(FUN = f, vectorize.args = "t")
-  f_class <- function(time, ...) {
-    result <- f_vec(time, ...)
-    attr(result, "time") <- time
-    class(result) <- "cdf_function"
-    result
-  }
-  f_class
+
+  f_class <- function(t, ...) {
+     result <- f_vec(t, ...)
+     attr(result, "time") <- t
+     class(result) <- "cdf_function"
+     result
+   }
+   f_class
 }

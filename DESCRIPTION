@@ -17,4 +17,9 @@ Imports:
     assertthat,
     ggplot2,
     gmp,
-    LambertW
+    LambertW,
+    lbfgs,
+    numDeriv,
+    pbmcapply,
+    purrr,
+    rlang

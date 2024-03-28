@@ -20,7 +20,7 @@ Constructs a plot of the probability density function (PDF) of ZMPG frailty.
 \examples{
 zmpg_weibull <- pdf_fragility_zmpg(pdf = dweibull)
 zmpg_weibull(
-  t = seq(0.001, 0.5, length.out = 250),
+  t = seq(0.001, 0.5, length.out = 100L),
   mu = 0.7,
   phi = 0.6,
   rho = 0.1,

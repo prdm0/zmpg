@@ -8,14 +8,6 @@ pdf_fragility_zmpg(pdf)
 }
 \arguments{
 \item{pdf}{The base probability density function.}
-
-\item{mu}{The mean parameter of the ZMPG distribution.}
-
-\item{phi}{The dispersion of the ZMPG distribution.}
-
-\item{rho}{The correlation parameter of the ZMPG distribution.}
-
-\item{...}{Additional arguments of the base distribution passed to \code{pdf}.}
 }
 \value{
 Calculates the improper density of a random variable \eqn{T} that

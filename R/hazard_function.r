@@ -37,24 +37,24 @@
 #'   b = 1.8,
 #'   lambda = 1.5
 #' )
-
 #'
 #' @importFrom assertthat assert_that
 #'
 #' @export
 hazard_function <- function(pdf) {
-  f <- function(t, ...) {
+  survival_func = survival_function(pdf)
+  f <- function(t, t0 = 0, ...) {
     assertthat::assert_that(
       t > 0,
       msg = "t > 0. In this tool, the density function is used to model survival time."
     )
-    pdf(t, ...) / survival_function(pdf)(t, ...)
+    exp(log(pdf(t, ...)) - log(survival_func(t, t0, ...)))
   }
 
   f_vec <- Vectorize(FUN = f, vectorize.args = "t")
-  f_class <- function(time, ...) {
-    result <- f_vec(time, ...)
-    attr(result, "time") <- time
+  f_class <- function(t, ...) {
+    result <- f_vec(t, ...)
+    attr(result, "time") <- t
     class(result) <- "hazard_function"
     result
   }

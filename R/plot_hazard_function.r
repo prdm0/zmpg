@@ -17,7 +17,7 @@
 #' hazard_beta_exponential <- hazard_function(beta_exponential)
 #'
 #' hazard_beta_exponential(
-#'   t = seq(0.001, 1.5, length.out = 250L),
+#'   t = seq(0.001, 1.5, length.out = 100L),
 #'   a = 1.5,
 #'   b = 1.8,
 #'   lambda = 1.5
