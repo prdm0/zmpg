@@ -48,7 +48,8 @@ hazard_function <- function(pdf) {
       t > 0,
       msg = "t > 0. In this tool, the density function is used to model survival time."
     )
-    exp(log(pdf(t, ...)) - log(survival_func(t, t0, ...)))
+    #exp(log(pdf(t, ...)) - log(survival_func(t, t0, ...)))
+    pdf(t, ...) / survival_func(t, t0, ...)
   }
 
   f_vec <- Vectorize(FUN = f, vectorize.args = "t")

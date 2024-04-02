@@ -68,9 +68,9 @@ survival_function <- function(pdf) {
       msg = "t >= 0, t0 >= 0 and t >= t0"
     )
 
-    if(t == 0) {
-      return(1)
-    }
+    # if(t == 0) {
+    #   return(1)
+    # }
 
     r <- 1 - integrate(
       f = \(t) pdf(t, ...),
@@ -82,6 +82,7 @@ survival_function <- function(pdf) {
     } else {
       return(r)
     }
+    r
   }
   f_vec <- Vectorize(FUN = f, vectorize.args = "t")
 

@@ -43,12 +43,13 @@ pdf_fragility_zmpg <- function(pdf) {
 
     w <- -phi * log(kapa) - delta
 
-    r <- (-rho * hazard_function(pdf)(t = t, ...) * kapa) / phi * w / (1 + w)
-    if(r < 0){
+    r <- ((-rho * hazard_function(pdf)(t = t, ...) * kapa) / phi) * w / (1 + w)
+    if(t <= 0){
       return(0)
     } else {
       return(r)
     }
+    r
   }
   f_vec <- Vectorize(FUN = f, vectorize.args = "t")
   f_class <- function(t, ...) {

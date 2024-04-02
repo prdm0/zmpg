@@ -32,10 +32,10 @@
 #' @importFrom LambertW W
 #' @export
 fgp_pg <- function(t, mu, phi) {
-  assert_that(
-    all(t >= 0 & t <= 1 & mu > 0 & phi >= 0),
-    msg = "t must be between 0 and 1, mu must be positive and phi must be non-negative"
-  )
+  # assert_that(
+  #   all(t >= 0 & t <= 1 & mu > 0 & phi >= 0),
+  #   msg = "t must be between 0 and 1, mu must be positive and phi must be non-negative"
+  # )
 
   delta <- (mu * phi) / (1 + mu * phi)
   exp((-1 / phi) * (LambertW::W(-delta * exp(-delta) * t) + delta))

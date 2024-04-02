@@ -68,7 +68,7 @@
 #' table() |>
 #' barplot(main = "Generating Binomial observations")
 #'
-#'acceptance_rejection(
+#' acceptance_rejection(
 #'  n = 100L,
 #'  f = dnorm,
 #'  continuous = TRUE,
@@ -107,9 +107,10 @@ acceptance_rejection <-
       ...) {
 
     pdf <- purrr::partial(.f = f, !!!args_pdf)
+    if(xlim[1L] == 0) xlim[1L] <- .Machine$double.xmin
 
     if (continuous) {
-      step <- 1e-3
+      step <- 1e-5
       pdf_base <- purrr::partial(.f = dunif, min = xlim[1L], max = xlim[2L])
       base_generator <- purrr::partial(.f = runif, min = xlim[1L], max = xlim[2L])
     } else {
@@ -118,20 +119,15 @@ acceptance_rejection <-
       base_generator <- \(n) sample(x = xlim[1L]:xlim[2L], size = n, replace = TRUE)
     }
 
+    x <- max(pdf_base(xlim[1L]:xlim[2L]) / pdf(xlim[1L]:xlim[2L]))
+
     objective_c <- function(c) {
       differences <-
-        purrr::map_dbl(
-          seq(xlim[1L], xlim[2L], by = step),
-          function(x) pdf(x) - c * pdf_base(x)
-        )
-
-      differences <- differences[is.finite(differences)]
-
-      return(-mean(differences^2))
+      (pdf(x) - c * pdf_base(x))^2
     }
 
     gradient_objective_c <- function(c) {
-      grad(
+      numDeriv::grad(
         func = objective_c,
         x = c
       )
@@ -178,6 +174,6 @@ acceptance_rejection <-
       )
       return(r)
     } else {
-      return(purrr::map_dbl(1L:n, ~ one_step(i = .)))
+      return(purrr::map_dbl(1L:n, ~one_step(i = .)))
     }
   }
