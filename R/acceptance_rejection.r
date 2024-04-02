@@ -63,8 +63,7 @@
 #'  f = dbinom,
 #'  continuous = FALSE,
 #'  args_pdf = list(size = 5, prob = 0.5),
-#'  xlim = c(0, 10),
-#'  c = 25
+#'  xlim = c(0, 10)
 #' ) |>
 #' table() |>
 #' barplot(main = "Generating Binomial observations")
@@ -116,11 +115,17 @@ acceptance_rejection <-
       base_generator <- purrr::partial(.f = runif, min = xlim[1L], max = xlim[2L])
     } else {
       step <- 1L
-      pdf_base <- \(x) 1
+      pdf_base <- \(x) 1/ (xlim[2L] - xlim[1L] + 1)
       base_generator <- \(n) sample(x = xlim[1L]:xlim[2L], size = n, replace = TRUE)
     }
 
-    x <- max(pdf_base(xlim[1L]:xlim[2L]) / pdf(xlim[1L]:xlim[2L]))
+    x <- seq(from = xlim[1L], to = xlim[2L], by = step)
+    a <- purrr::map_dbl(.x = x, .f = pdf)
+    b <- purrr::map_dbl(.x = x, .f = pdf_base)
+
+    id_x <- which.max((a/b)[!is.infinite(a/b)])
+
+    x <- x[id_x]
 
     objective_c <- function(c) {
       differences <-
