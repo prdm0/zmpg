@@ -95,13 +95,14 @@ acceptance_rejection(
  f = dbinom,
  continuous = FALSE,
  args_pdf = list(size = 5, prob = 0.5),
- xlim = c(0, 10)
+ xlim = c(0, 10),
+ c = 25
 ) |>
 table() |>
 barplot(main = "Generating Binomial observations")
 
 acceptance_rejection(
- n = 100L,
+ n = 1000L,
  f = dnorm,
  continuous = TRUE,
  args_pdf = list(mean = 0, sd = 1),
