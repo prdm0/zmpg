@@ -227,7 +227,8 @@ hist(
   data,
   main = "Generating Gaussian observations",
   xlab = "x",
-  probability = TRUE
+  probability = TRUE,
+  ylim = c(0, 0.4)
 )
 
 x <- seq(-4, 4, length.out = 500L)
