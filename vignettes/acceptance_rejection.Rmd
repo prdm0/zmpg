@@ -125,6 +125,8 @@ The arguments `linesearch_algorithm`, `max_iterations`, `epsilon`, `start_c`, an
 
 # Examples
 
+Below are some examples of using the `zmpg::acceptance_rejection()` function to generate pseudo-random observations of discrete and continuous random variables. It should be noted that in the case of $X$ being a discrete random variable, it is necessary to provide the argument `continuous = FALSE`, whereas in the case of $X$ being continuous (the default), you must consider `continuous = TRUE`.
+
 ## Generating discrete observations
 
 As an example, let $X \sim Poisson(\lambda = 0.7)$. We will generate $n = 1000$ observations of $X$ using the acceptance-rejection method, using the `zmpg::acceptance_rejection()` function. Note that it is necessary to provide the `xlim` argument. Try to set an upper limit value for which the probability of $X$ assuming that value is zero or very close to zero. In this case, we choose `xlim = c(0, 20)`, where `dpois(x = 20, lambda = 0.7)` is very close to zero (`r dpois(x = 20, lambda = 0.7)`).

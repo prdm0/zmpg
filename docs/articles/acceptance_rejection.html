@@ -256,6 +256,14 @@ will not need to change them.</p>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
+<p>Below are some examples of using the
+<code><a href="../reference/acceptance_rejection.html">zmpg::acceptance_rejection()</a></code> function to generate
+pseudo-random observations of discrete and continuous random variables.
+It should be noted that in the case of <span class="math inline">\(X\)</span> being a discrete random variable, it is
+necessary to provide the argument <code>continuous = FALSE</code>,
+whereas in the case of <span class="math inline">\(X\)</span> being
+continuous (the default), you must consider
+<code>continuous = TRUE</code>.</p>
 <div class="section level3">
 <h3 id="generating-discrete-observations">Generating discrete observations<a class="anchor" aria-label="anchor" href="#generating-discrete-observations"></a>
 </h3>
@@ -275,6 +283,7 @@ where <code>dpois(x = 20, lambda = 0.7)</code> is very close to zero
 <span><span class="co"># Ensuring Reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> </span>
 <span></span>
+<span><span class="co"># Generating observations</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">zmpg</span><span class="fu">::</span><span class="fu"><a href="../reference/acceptance_rejection.html">acceptance_rejection</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="fl">1000L</span>,</span>
 <span>  f <span class="op">=</span> <span class="va">dpois</span>,</span>
@@ -315,6 +324,7 @@ variable <span class="math inline">\(X \sim Binomial(n = 5, p =
 <span><span class="co"># Ensuring reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> </span>
 <span></span>
+<span><span class="co"># Generating observations</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">zmpg</span><span class="fu">::</span><span class="fu"><a href="../reference/acceptance_rejection.html">acceptance_rejection</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="fl">2000L</span>,</span>
 <span>  f <span class="op">=</span> <span class="va">dbinom</span>,</span>
@@ -359,6 +369,7 @@ method. Note that <code>continuous = TRUE</code>.</p>
 <span><span class="co"># Ensuring reproducibility</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> </span>
 <span></span>
+<span><span class="co"># Generating observations</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">zmpg</span><span class="fu">::</span><span class="fu"><a href="../reference/acceptance_rejection.html">acceptance_rejection</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="fl">2000L</span>,</span>
 <span>  f <span class="op">=</span> <span class="va">dnorm</span>,</span>
