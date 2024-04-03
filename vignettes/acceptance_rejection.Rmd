@@ -77,10 +77,8 @@ Computationally, it is convenient to consider $Y$ as a random variable with a un
 The `zmpg` package is available on CRAN and can be installed using the following command:
 
 ```{r, eval = FALSE}
-# Instalando o pacote
+# install.packages("remotes")
 remotes::install_github("prdm0/zmpg", force = TRUE)
-
-# Carregando o pacote
 library(zmpg)
 ```
 
