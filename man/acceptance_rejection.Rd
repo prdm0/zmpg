@@ -91,12 +91,11 @@ On Windows operating systems, the code will be seral even if \code{parallel = TR
 set.seed(0) # setting a seed for reproducibility
 
 acceptance_rejection(
- n = 25L,
+ n = 2000L,
  f = dbinom,
  continuous = FALSE,
  args_pdf = list(size = 5, prob = 0.5),
- xlim = c(0, 10),
- c = 25
+ xlim = c(0, 10)
 ) |>
 table() |>
 barplot(main = "Generating Binomial observations")

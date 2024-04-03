@@ -21,6 +21,12 @@
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/acceptance_rejection.html">Acceptance and rejection method</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -147,12 +153,11 @@ On Windows operating systems, the code will be seral even if <code>parallel = TR
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span> <span class="co"># setting a seed for reproducibility</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">acceptance_rejection</span><span class="op">(</span></span></span>
-<span class="r-in"><span> n <span class="op">=</span> <span class="fl">25L</span>,</span></span>
+<span class="r-in"><span> n <span class="op">=</span> <span class="fl">2000L</span>,</span></span>
 <span class="r-in"><span> f <span class="op">=</span> <span class="va">dbinom</span>,</span></span>
 <span class="r-in"><span> continuous <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span> args_pdf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">5</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span> xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span> c <span class="op">=</span> <span class="fl">25</span></span></span>
+<span class="r-in"><span> xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span>main <span class="op">=</span> <span class="st">"Generating Binomial observations"</span><span class="op">)</span></span></span>

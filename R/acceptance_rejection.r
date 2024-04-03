@@ -59,7 +59,7 @@
 #' set.seed(0) # setting a seed for reproducibility
 #'
 #' acceptance_rejection(
-#'  n = 25L,
+#'  n = 2000L,
 #'  f = dbinom,
 #'  continuous = FALSE,
 #'  args_pdf = list(size = 5, prob = 0.5),
@@ -123,13 +123,11 @@ acceptance_rejection <-
     a <- purrr::map_dbl(.x = x, .f = pdf)
     b <- purrr::map_dbl(.x = x, .f = pdf_base)
 
-    id_x <- which.max((a/b)[!is.infinite(a/b)])
-
-    x <- x[id_x]
+    x_max <- x[which.max((a/b)[!is.infinite(a/b)])]
 
     objective_c <- function(c) {
       differences <-
-      (pdf(x) - c * pdf_base(x))^2
+      (pdf(x_max) - c * pdf_base(x_max))^2
     }
 
     gradient_objective_c <- function(c) {
