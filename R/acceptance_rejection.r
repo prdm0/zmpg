@@ -120,6 +120,7 @@ acceptance_rejection <-
     }
 
     x <- seq(from = xlim[1L], to = xlim[2L], by = step)
+
     a <- purrr::map_dbl(.x = x, .f = pdf)
     b <- purrr::map_dbl(.x = x, .f = pdf_base)
 
@@ -128,6 +129,9 @@ acceptance_rejection <-
     objective_c <- function(c) {
       differences <-
       (pdf(x_max) - c * pdf_base(x_max))^2
+
+      if(is.infinite(differences)) return(.Machine$double.xmax)
+      else return(differences)
     }
 
     gradient_objective_c <- function(c) {
